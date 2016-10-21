@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TimeLineImageView">
+        <attr name="timeLineImageView_lineOrientation">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+
+        <attr name="timeLineImageView_lineColor" format="color" />
+        <attr name="timeLineImageView_lineSize" format="dimension" />
+        <attr name="timeLineImageView_lineStart" format="boolean" />
+        <attr name="timeLineImageView_lineEnd" format="boolean" />
+
+        <attr name="timeLineImageView_lineType">
+            <enum name="line" value="0" />
+            <enum name="dash" value="1" />
+        </attr>
+        <attr name="timeLineImageView_dashWidth" format="dimension" />
+        <attr name="timeLineImageView_dashGap" format="dimension" />
+    </declare-styleable>
+</resources>
