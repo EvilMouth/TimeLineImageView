@@ -18,11 +18,11 @@ compile 'com.github.yuhangjiayou:TimeLineImageView:v1.1.2'
         android:paddingTop="20dp"
         android:src="@mipmap/ic_launcher" />
 ```
-`lineOrientation` - 线方向 vertical or horizontal
-`lineColor` - 线颜色
-`lineSize` - 线大小
-`lineStart` - 是否画开始线
-`lineEnd` - 是否画结束线
-`lineType` - 线类型(直线或虚线) line or dash
-`dashWidth` - 虚线宽度
-`dashGap` - 虚线间隔
+`lineOrientation` - 线方向 vertical or horizontal  
+`lineColor` - 线颜色  
+`lineSize` - 线大小  
+`lineStart` - 是否画开始线  
+`lineEnd` - 是否画结束线  
+`lineType` - 线类型(直线或虚线) line or dash  
+`dashWidth` - 虚线宽度  
+`dashGap` - 虚线间隔  
