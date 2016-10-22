@@ -9,7 +9,8 @@ compile 'com.github.yuhangjiayou:TimeLineImageView:{Latest release}'
 
 ## Latest release
 ```groovy
-v1.1.0
+v1.1.1
 ```
 
 ![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/1.png)
+![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/2.png)

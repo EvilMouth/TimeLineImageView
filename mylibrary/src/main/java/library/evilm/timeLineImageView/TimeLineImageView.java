@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -100,16 +101,45 @@ public class TimeLineImageView extends ImageView {
         //先画line
         if (mLineStart || mLineEnd) {
             boolean isVertical = mLineOrientation == VERTICAL;//是否画垂直线
-            //计算线起点终点
             int paddingStart = isVertical ? getPaddingTop() : getPaddingLeft();
-            int xStart = isVertical ? getWidth() / 2 : mLineStart ? 0 : paddingStart;
-            int yStart = isVertical ? mLineStart ? 0 : paddingStart : getHeight() / 2;
-            int xEnd = isVertical ? xStart : mLineEnd ? getWidth() : paddingStart;
-            int yEnd = isVertical ? mLineEnd ? getHeight() : paddingStart : yStart;
 
-            mLinePath.moveTo(xStart, yStart);
-            mLinePath.lineTo(xEnd, yEnd);
-            canvas.drawPath(mLinePath, mLinePaint);
+            //画开始线
+            if (mLineStart && paddingStart > 0) {
+                mLinePath.moveTo(
+                        isVertical ? getWidth() / 2 : 0,
+                        isVertical ? 0 : getHeight() / 2
+                );
+                mLinePath.lineTo(
+                        isVertical ? getWidth() / 2 : paddingStart,
+                        isVertical ? paddingStart : getHeight() / 2
+                );
+                canvas.drawPath(mLinePath, mLinePaint);
+            }
+
+            //避开icon
+            int drawableWidth = 0, drawableHeight = 0;
+            Drawable drawable = getDrawable();
+            if (drawable != null) {
+                drawableWidth = drawable.getIntrinsicWidth();
+                drawableHeight = drawable.getIntrinsicHeight();
+                if (isVertical && drawableWidth != getWidth())
+                    drawableHeight = drawableHeight / (drawableWidth / getWidth());
+                else if (!isVertical && drawableHeight != getHeight())
+                    drawableWidth = drawableWidth / (drawableHeight / getHeight());
+            }
+
+            //画结束线
+            if (mLineEnd) {
+                mLinePath.moveTo(
+                        isVertical ? getWidth() / 2 : paddingStart + drawableWidth,
+                        isVertical ? paddingStart + drawableHeight : getHeight() / 2
+                );
+                mLinePath.lineTo(
+                        isVertical ? getWidth() / 2 : getWidth(),
+                        isVertical ? getHeight() : getHeight() / 2
+                );
+                canvas.drawPath(mLinePath, mLinePaint);
+            }
         }
 
         //再画image
@@ -158,4 +188,26 @@ public class TimeLineImageView extends ImageView {
         mLinePaint.setPathEffect(lineEffect);
         invalidate();
     }
+
+    /**
+     * 设置线颜色
+     *
+     * @param color
+     */
+    public void setLineColor(int color) {
+        mLinePaint.setColor(color);
+        invalidate();
+    }
+
+    /**
+     * 设置线大小
+     *
+     * @param size
+     */
+    public void setLineSize(float size) {
+        mLinePaint.setStrokeWidth(size);
+        invalidate();
+    }
+
+
 }
