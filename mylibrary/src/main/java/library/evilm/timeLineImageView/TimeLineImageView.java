@@ -9,6 +9,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -194,7 +195,7 @@ public class TimeLineImageView extends ImageView {
      *
      * @param color
      */
-    public void setLineColor(int color) {
+    public void setLineColor(@ColorInt int color) {
         mLinePaint.setColor(color);
         invalidate();
     }
@@ -208,6 +209,4 @@ public class TimeLineImageView extends ImageView {
         mLinePaint.setStrokeWidth(size);
         invalidate();
     }
-
-
 }

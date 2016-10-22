@@ -4,12 +4,7 @@ TimeLineImageView
 
 ## Depandence
 ```groovy
-compile 'com.github.yuhangjiayou:TimeLineImageView:{Latest release}'
-```
-
-## Latest release
-```groovy
-v1.1.1
+compile 'com.github.yuhangjiayou:TimeLineImageView:v1.1.2'
 ```
 
 ![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/1.png)
