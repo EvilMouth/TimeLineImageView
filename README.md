@@ -2,13 +2,24 @@
 TimeLineImageView
 时间轴，支持水平垂直，直线虚线
 
+![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/1.png)
+![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/2.png)
+
+## Step One
+```groovy
+Add it in your root build.gradle at the end of repositories:  
+allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+```
+
 ## Depandence
 ```groovy
 compile 'com.github.yuhangjiayou:TimeLineImageView:v1.1.2'
 ```
-
-![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/1.png)
-![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/2.png)
 
 ## Usage
 ```xml
