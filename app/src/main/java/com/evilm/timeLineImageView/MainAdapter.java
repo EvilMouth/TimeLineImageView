@@ -1,5 +1,6 @@
 package com.evilm.timeLineImageView;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +26,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        if (position == 0) holder.tliv.setLineVisibility(false, true);
-        else if (position == getItemCount() - 1) holder.tliv.setLineVisibility(true, false);
-        else holder.tliv.setLineVisibility(true, true);
-        
+        if (position == 0) {
+            holder.tliv.setLineVisibility(false, true);
+            holder.tliv.setLineColor(Color.BLUE, Color.RED);
+        } else if (position == getItemCount() - 1) {
+            holder.tliv.setLineVisibility(true, false);
+            holder.tliv.setLineColor(Color.BLUE);
+        } else {
+            holder.tliv.setLineVisibility(true, true);
+            holder.tliv.setLineColor(Color.BLUE);
+        }
+
 //        switch (position) {
 //            case 1:
 //                holder.tliv.setLineDash(20, 5);

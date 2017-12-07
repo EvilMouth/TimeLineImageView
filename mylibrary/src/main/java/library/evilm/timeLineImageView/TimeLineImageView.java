@@ -10,8 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * ProjectName:TimeLineImageView
@@ -22,7 +22,7 @@ import android.widget.ImageView;
  * Modify remark:
  */
 
-public class TimeLineImageView extends ImageView {
+public class TimeLineImageView extends AppCompatImageView {
     /**
      * 线方向
      * VERTICAL:垂直
@@ -41,12 +41,15 @@ public class TimeLineImageView extends ImageView {
 
     private int mLineOrientation = VERTICAL;
     private int mLineColor = Color.parseColor("#E5E5E5");
+    // 显示进度颜色，只显示一半，只适用endLine
+    private int mLineColorHalf = Color.TRANSPARENT;
     private float mLineSize = Resources.getSystem().getDisplayMetrics().density * .5f + .5f;
     private boolean mLineStart = true;
     private boolean mLineEnd = true;
 
     private Paint mLinePaint;
     private Path mLinePath;
+    private Path mLinePathHalf;
 
     public TimeLineImageView(Context context) {
         super(context);
@@ -114,6 +117,7 @@ public class TimeLineImageView extends ImageView {
                         isVertical ? getWidth() / 2 : paddingStart,
                         isVertical ? paddingStart : getHeight() / 2
                 );
+                mLinePaint.setColor(mLineColor);
                 canvas.drawPath(mLinePath, mLinePaint);
             }
 
@@ -139,7 +143,25 @@ public class TimeLineImageView extends ImageView {
                         isVertical ? getWidth() / 2 : getWidth(),
                         isVertical ? getHeight() : getHeight() / 2
                 );
+                mLinePaint.setColor(mLineColor);
                 canvas.drawPath(mLinePath, mLinePaint);
+
+                // 如果不透明 上色
+                if (mLineColorHalf != Color.TRANSPARENT) {
+                    if (mLinePathHalf == null) {
+                        mLinePathHalf = new Path();
+                    }
+                    mLinePathHalf.moveTo(
+                            isVertical ? getWidth() / 2 : paddingStart + drawableWidth,
+                            isVertical ? paddingStart + drawableHeight : getHeight() / 2
+                    );
+                    mLinePathHalf.lineTo(
+                            isVertical ? getWidth() / 2 : getWidth() - (getWidth() - paddingStart - drawableWidth) / 2,
+                            isVertical ? getHeight() - (getHeight() - paddingStart - drawableHeight) / 2 : getHeight() / 2
+                    );
+                    mLinePaint.setColor(mLineColorHalf);
+                    canvas.drawPath(mLinePathHalf, mLinePaint);
+                }
             }
         }
 
@@ -196,7 +218,20 @@ public class TimeLineImageView extends ImageView {
      * @param color
      */
     public void setLineColor(@ColorInt int color) {
-        mLinePaint.setColor(color);
+        mLineColor = color;
+        mLineColorHalf = Color.TRANSPARENT;
+        invalidate();
+    }
+
+    /**
+     * 设置线颜色
+     *
+     * @param color     底色
+     * @param colorHalf 进度颜色显示一半
+     */
+    public void setLineColor(@ColorInt int color, @ColorInt int colorHalf) {
+        mLineColor = color;
+        mLineColorHalf = colorHalf;
         invalidate();
     }
 

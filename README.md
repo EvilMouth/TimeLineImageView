@@ -6,7 +6,7 @@ TimeLineImageView
 ![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/2.png)
 
 ## Step One
-```groovy
+```
 Add it in your root build.gradle at the end of repositories:  
 allprojects {
 		repositories {
@@ -18,7 +18,7 @@ allprojects {
 
 ## Depandence
 ```groovy
-compile 'com.github.yuhangjiayou:TimeLineImageView:v1.1.2'
+compile 'com.github.izyhang:TimeLineImageView:{lastVersion}'
 ```
 
 ## Usage
