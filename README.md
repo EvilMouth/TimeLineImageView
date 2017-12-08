@@ -1,4 +1,5 @@
 # TimeLineImageView
+
 TimeLineImageView
 时间轴，支持水平垂直，直线虚线
 
@@ -6,6 +7,7 @@ TimeLineImageView
 ![image](https://github.com/yuhangjiayou/TimeLineImageView/raw/master/png/2.png)
 
 ## Step One
+
 ```
 Add it in your root build.gradle at the end of repositories:  
 allprojects {
@@ -16,12 +18,14 @@ allprojects {
 	}
 ```
 
-## Depandence
+## Dependency
+
 ```groovy
 compile 'com.github.izyhang:TimeLineImageView:{lastVersion}'
 ```
 
 ## Usage
+
 ```xml
 <library.evilm.timeLineImageView.TimeLineImageView
         android:layout_width="wrap_content"
